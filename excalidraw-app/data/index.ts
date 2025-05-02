@@ -153,8 +153,9 @@ export const generateCollaborationLinkData = async () => {
   if (!roomKey) {
     throw new Error("Couldn't generate room key");
   }
+  const roomIdWithPrefix = `excalidraw-${roomId}`;
 
-  return { roomId, roomKey };
+  return { roomIdWithPrefix, roomKey };
 };
 
 export const getCollaborationLink = (data: {

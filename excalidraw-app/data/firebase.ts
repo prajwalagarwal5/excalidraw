@@ -36,7 +36,7 @@ import { getSyncableElements } from ".";
 
 import type { SyncableExcalidrawElement } from ".";
 import type Portal from "../collab/Portal";
-import type { Socket } from "socket.io-client";
+import type { WebSocketClient } from "../collab/WebSocketClient";
 
 // private
 // -----------------------------------------------------------------------------
@@ -116,12 +116,12 @@ const decryptElements = async (
 };
 
 class FirebaseSceneVersionCache {
-  private static cache = new WeakMap<Socket, number>();
-  static get = (socket: Socket) => {
+  private static cache = new WeakMap<WebSocketClient, number>();
+  static get = (socket: WebSocketClient) => {
     return FirebaseSceneVersionCache.cache.get(socket);
   };
   static set = (
-    socket: Socket,
+    socket: WebSocketClient,
     elements: readonly SyncableExcalidrawElement[],
   ) => {
     FirebaseSceneVersionCache.cache.set(socket, getSceneVersion(elements));
@@ -249,7 +249,7 @@ export const saveToFirebase = async (
 export const loadFromFirebase = async (
   roomId: string,
   roomKey: string,
-  socket: Socket | null,
+  socket: WebSocketClient | null,
 ): Promise<readonly SyncableExcalidrawElement[] | null> => {
   const firestore = _getFirestore();
   const docRef = doc(firestore, "scenes", roomId);

@@ -13,10 +13,10 @@ export const FILE_UPLOAD_MAX_BYTES = 3 * 1024 * 1024; // 3 MiB
 export const FILE_CACHE_MAX_AGE_SEC = 31536000;
 
 export const WS_EVENTS = {
-  SERVER_VOLATILE: "server-volatile-broadcast",
-  SERVER: "server-broadcast",
-  USER_FOLLOW_CHANGE: "user-follow",
-  USER_FOLLOW_ROOM_CHANGE: "user-follow-room-change",
+  SERVER_VOLATILE: "server_volatile_broadcast",
+  SERVER: "server_broadcast",
+  USER_FOLLOW_CHANGE: "user_follow",
+  USER_FOLLOW_ROOM_CHANGE: "user_follow_room_change",
 } as const;
 
 export enum WS_SUBTYPES {
